@@ -1,0 +1,32 @@
+public class Solution {
+    public int removeDuplicates(int[] nums) {
+        if (nums.length == 0) return 0; // If the array is empty, return 0
+        
+        int uniqueIndex = 0; // Pointer to keep track of the position of the next unique element
+        
+        // Iterate through the array starting from the second element
+        for (int i = 1; i < nums.length; i++) {
+            // If the current element is different from the previous one, it's unique
+            if (nums[i] != nums[uniqueIndex]) {
+                // Move the unique element to the next position
+                nums[++uniqueIndex] = nums[i];
+            }
+        }
+        
+        // The number of unique elements is the index of the last unique element + 1
+        return uniqueIndex + 1;
+    }
+
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        
+        // Test cases
+        int[] nums1 = {1, 1, 2};
+        int k1 = solution.removeDuplicates(nums1);
+        System.out.println("Output: " + k1); // Output: 2
+
+        int[] nums2 = {0, 0, 1, 1, 1, 2, 2, 3, 3, 4};
+        int k2 = solution.removeDuplicates(nums2);
+        System.out.println("Output: " + k2); // Output: 5
+    }
+}
